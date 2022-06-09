@@ -9,9 +9,8 @@ test('generates manifest, when provided the minimal parameters', () => {
     teamId: 'goldfish',
   });
 
+  // TODO: Can't use this until the JSII / CDK8s+ bundling issue is resolved.
   // const postgresSecret = kplus.Secret.fromSecretName('')
 
   app.synth();
-
-  // expect(new Hello().sayHello()).toBe('hello, world!');
 });

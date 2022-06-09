@@ -1,7 +1,7 @@
 const { cdk8s } = require('projen');
 const project = new cdk8s.ConstructLibraryCdk8s({
   author: 'Ryan Parker',
-  authorAddress: 'ryan.parker3@outlook.com',
+  authorAddress: 'parkerzr@amazon.com',
   cdk8sVersion: '1.4.10',
   defaultReleaseBranch: 'main',
   name: 'cdk8s-web-app',
