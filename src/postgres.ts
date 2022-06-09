@@ -47,7 +47,7 @@ export interface PostgresProps {
    * Name of the team that the cluster belongs to. You cannot change this after the
    * cluster is created. Clusters will be prefixed with this team id.
    *
-   * The name must be lowercase.
+   * The name will be lower cased.
    */
   readonly teamId: string;
 
@@ -121,9 +121,10 @@ export class Postgres extends Construct {
 
     new RawPostgres(this, 'Postgres', {
       metadata: {
-        labels: this.labels,
+        // Name is required for the Postgres Operator to recognize the resource.
         name: this.clusterName,
         namespace: this.namespace,
+        labels: this.labels,
       },
       spec: {
         // @ts-expect-error - We copied the enum but TS thinks they're different.
@@ -142,6 +143,7 @@ export class Postgres extends Construct {
     });
   }
 
+  // TODO: Can't use this until we resolve the JSII / CDK8s+ bundling issue.
   // get credentials() {
   //   return kplus.Secret.fromSecretName(this, 'credentials', this.clusterName);
   // }

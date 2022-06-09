@@ -100,7 +100,6 @@ export default class Hasura extends Construct {
                 ports: [
                   {
                     protocol: 'TCP',
-                    // TODO: shouldn't this be a IntOrString type?
                     containerPort: 8080,
                   },
                 ],
@@ -122,15 +121,6 @@ export default class Hasura extends Construct {
                       configMapKeyRef: {
                         name: this.config.name,
                         key: 'HASURA_GRAPHQL_ENABLE_CONSOLE',
-                      },
-                    },
-                  },
-                  {
-                    name: 'HASURA_GRAPHQL_DEV_MODE',
-                    valueFrom: {
-                      configMapKeyRef: {
-                        name: this.config.name,
-                        key: 'HASURA_GRAPHQL_DEV_MODE',
                       },
                     },
                   },
