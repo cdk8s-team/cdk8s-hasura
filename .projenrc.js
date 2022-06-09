@@ -8,6 +8,7 @@ const project = new cdk8s.ConstructLibraryCdk8s({
   repositoryUrl: 'git@github.com:cdk8s-team/cdk8s-web-app.git',
 
   // deps: [],
+  // devDeps: [], /* Build dependencies for this module. */
   peerDeps: [
     'cdk8s',
     'constructs',
@@ -15,8 +16,7 @@ const project = new cdk8s.ConstructLibraryCdk8s({
   bundledDeps: [
     'cdk8s-plus-24',
   ],
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [], /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  description: 'CDK8s construct for deploying a full stack web app.',
+  packageName: 'cdk8s-web-app',
 });
 project.synth();
