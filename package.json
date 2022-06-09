@@ -62,6 +62,12 @@
     "cdk8s": "^1.4.10",
     "constructs": "^3.3.196"
   },
+  "dependencies": {
+    "cdk8s-plus-24": "^2.0.0-rc.13"
+  },
+  "bundledDependencies": [
+    "cdk8s-plus-24"
+  ],
   "keywords": [
     "cdk"
   ],
