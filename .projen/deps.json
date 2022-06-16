@@ -20,13 +20,16 @@
       "type": "build"
     },
     {
+      "name": "cdk8s-plus-24",
+      "type": "build"
+    },
+    {
       "name": "cdk8s",
-      "version": "1.4.10",
+      "version": "2.3.21",
       "type": "build"
     },
     {
       "name": "constructs",
-      "version": "3.3.196",
       "type": "build"
     },
     {
@@ -101,16 +104,15 @@
     },
     {
       "name": "cdk8s-plus-24",
-      "type": "bundled"
+      "type": "peer"
     },
     {
       "name": "cdk8s",
-      "version": "^1.4.10",
+      "version": "^2.3.21",
       "type": "peer"
     },
     {
       "name": "constructs",
-      "version": "^3.3.196",
       "type": "peer"
     }
   ],

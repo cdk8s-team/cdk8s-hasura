@@ -43,6 +43,7 @@ new Postgres(scope: Construct, id: string, props: PostgresProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s-web-app.Postgres.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s-web-app.Postgres.userCredentials">userCredentials</a></code> | *No description.* |
 
 ---
 
@@ -54,7 +55,77 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `userCredentials` <a name="userCredentials" id="cdk8s-web-app.Postgres.userCredentials"></a>
 
+```typescript
+public userCredentials(username?: string): ISecret
+```
+
+###### `username`<sup>Optional</sup> <a name="username" id="cdk8s-web-app.Postgres.userCredentials.parameter.username"></a>
+
+- *Type:* string
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s-web-app.Postgres.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### `isConstruct` <a name="isConstruct" id="cdk8s-web-app.Postgres.isConstruct"></a>
+
+```typescript
+import { Postgres } from 'cdk8s-web-app'
+
+Postgres.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s-web-app.Postgres.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s-web-app.Postgres.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s-web-app.Postgres.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
 
 
 ## Structs <a name="Structs" id="Structs"></a>
@@ -189,7 +260,7 @@ Name of the team that the cluster belongs to.
 You cannot change this after the
 cluster is created. Clusters will be prefixed with this team id.
 
-The name must be lowercase.
+The name will be lower cased.
 
 ---
 
@@ -200,7 +271,7 @@ public readonly databases: {[ key: string ]: string};
 ```
 
 - *Type:* {[ key: string ]: string}
-- *Default:* if not provided the default database will be created with the name "postgres" and if no users are provided it will be assigned to the default user "dbadmin".
+- *Default:* if not provided the default database will be created with the name "postgres" and if no users are provided it will be assigned to the default user "dbadmin", if users are provided it will default to the first entry.
 
 A map of database names to database owners.
 

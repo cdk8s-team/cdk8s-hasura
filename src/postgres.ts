@@ -1,4 +1,4 @@
-// import * as kplus from 'cdk8s-plus-24';
+import * as kplus from 'cdk8s-plus-24';
 import { Construct } from 'constructs';
 import { Postgresql as RawPostgres } from './imports/postgresql-acid.zalan.do';
 
@@ -54,20 +54,20 @@ export interface PostgresProps {
   /**
    * A map of usernames to user flags.
    *
-   * @default - A "dbadmin" user will be created for you with the SUPERUSER
-   * and CREATEDB flags.
+   * @default - 'postgres' is created with the following flag LOGIN
    */
-  readonly users?: {[username:string]: UserFlags[]};
+  readonly users?: { [username: string]: UserFlags[] };
 
 
+  // TODO Evaluate better solutions for the default behavior here. Is this the best default?
   /**
    * A map of database names to database owners.
    *
    * @default - if not provided the default database will be created with the
    * name "postgres" and if no users are provided it will be assigned to the
-   * default user "dbadmin".
+   * default user "dbadmin", if users are provided it will default to the first entry.
    */
-  readonly databases?: {[database:string]: string};
+  readonly databases?: { [database: string]: string };
 
   /**
    * The number of Postgres instances to create.
@@ -111,12 +111,25 @@ export class Postgres extends Construct {
   private readonly labels: { [name: string]: string };
   private readonly namespace?: string;
   private readonly teamId: string;
-  private readonly clusterName: string;
+  public readonly clusterName: string;
 
   constructor(scope: Construct, id: string, props: PostgresProps) {
     super(scope, id);
     this.labels = props.labels ?? { app: 'postgres' };
+    this.namespace = props.namespace;
     this.teamId = props.teamId;
+
+    /**
+     * TODO: Get this programmatically. If there are replica clusters then the cluster name
+     * could end with `-n` (n being a number) this needs to be handled so that we only use
+     * the master cluster name.
+     *
+     * This value can be manually retrieved using the following (replace <team-id> with the team id):
+     * @example
+     * ```sh
+     * kubectl get pods -o jsonpath={.items..metadata.name} -l application=spilo,cluster-name=<team-id>-cluster,spilo-role=master -n default
+     * ```
+     */
     this.clusterName = `${this.teamId.toLowerCase()}-cluster`;
 
     new RawPostgres(this, 'Postgres', {
@@ -128,8 +141,8 @@ export class Postgres extends Construct {
       },
       spec: {
         // @ts-expect-error - We copied the enum but TS thinks they're different.
-        users: props.users ?? { dbadmin: [UserFlags.SUPERUSER, UserFlags.CREATEDB] },
-        databases: props.databases ?? { postgres: 'dbadmin' },
+        users: props.users,
+        databases: props.databases,
         numberOfInstances: props.numberOfInstances || 1,
         postgresql: {
           // @ts-expect-error - We copied the enum but TS thinks they're different.
@@ -143,8 +156,39 @@ export class Postgres extends Construct {
     });
   }
 
-  // TODO: Can't use this until we resolve the JSII / CDK8s+ bundling issue.
-  // get credentials() {
-  //   return kplus.Secret.fromSecretName(this, 'credentials', this.clusterName);
-  // }
+  /**
+   *
+   * @param username
+   * @default - postgres
+   */
+  public userCredentials(username?: string) {
+    const user = username ?? 'postgres';
+
+    return new kplus.Secret(this, `${user}-credentials`, {
+      stringData: {
+        user,
+        /**
+         * TODO Need way of importing secret values for interpolation in database URL.
+         *
+         * This is what I originally was using but it doesn't seem like values can
+         * be retrieved using this.
+         * @example
+         * ```ts
+         * return kplus.Secret.fromSecretName(
+         *  this,
+         *  'credentials',
+         *  `${user}.${this.clusterName}.credentials.postgresql.acid.zalan.do`,
+         * );
+         * ```
+         *
+         * For now this value has to be manually retrieved using the following command:
+         * @example
+         * ```sh
+         * kubectl get secret postgres.<cluster-name>.credentials.postgresql.acid.zalan.do -o 'jsonpath={.data.password}' | base64 -d
+         * ```
+         */
+        password: '96TQRv1y030LbnkmrESu0U20wxxsQ2XmVe1NSBFKP5ktuBrVZ4i4b805LWhaACs0',
+      },
+    });
+  }
 }

@@ -72,3 +72,84 @@ src/postgres.ts:139:7 - error JSII9000: Encountered use of module that is not de
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
+
+Solved by removing cdk8s and constructs from the .porjen.js deps.
+
+## Cannot get value from imported secret
+
+I need a way of retrieving the secret that postgres-operator creates for the postgres user. I need to use this secret to form the database URL for Hasura.
+
+To workaround this for now
+
+1. I am retrieving the user password manually
+
+```sh
+kubectl get secret postgres.<cluster-name>.credentials.postgresql.acid.zalan.do -o 'jsonpath={.data.password}' | base64 -d
+```
+
+2. Hard-code the password in the [Postgres.credentials()](../src/postgres.ts) method.
+
+```ts
+// src/postgres.ts
+
+...
+
+  /**
+   *
+   * @param username
+   * @default - postgres
+   */
+  public userCredentials(username?: string) {
+    const user = username ?? 'postgres';
+
+    return new kplus.Secret(this, `${user}-credentials`, {
+      stringData: {
+        user,
+        /**
+         * TODO Need way of importing secret values for interpolation in database URL.
+         *
+         * This is what I originally was using but it doesn't seem like values can
+         * be retrieved using this.
+         * @example
+         * ```ts
+         * return kplus.Secret.fromSecretName(
+         *  this,
+         *  'credentials',
+         *  `${user}.${this.clusterName}.credentials.postgresql.acid.zalan.do`,
+         * );
+         * ```
+         *
+         * For now this value has to be manually retrieved using the following command:
+         * @example
+         * ```sh
+         * kubectl get secret postgres.<cluster-name>.credentials.postgresql.acid.zalan.do -o 'jsonpath={.data.password}' | base64 -d
+         * ```
+         */
+        password: '96TQRv1y030LbnkmrESu0U20wxxsQ2XmVe1NSBFKP5ktuBrVZ4i4b805LWhaACs0',
+      },
+    });
+  }
+```
+
+## Cannot return JS object from class method
+
+```sh
+👾 compile | jsii --silence-warnings=reserved-word
+[2022-06-15T15:45:20.645] [ERROR] jsii/compiler - Type model errors prevented the JSII assembly from being created
+src/postgres.ts:151:10 - error JSII3001: Type "__object" cannot be used as the return type because it is private or @internal
+
+151   public userCredentials(username?: string) {
+             ~~~~~~~~~~~~~~~
+
+  src/postgres.ts:155:12
+    155     return {
+                   ~
+    156       username: user,
+        ~~~~~~~~~~~~~~~~~~~~~
+    157       password: 'KsIBrzRZXiygi8T2tvSfKLYAXanmt8eMKh871IDo4cA6KtEOpWLv25jywmaGWRfb',
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    158     };
+        ~~~~~
+```
+
+This isn't a blocker but I would like to know why JSII doesn't like this.

@@ -1,5 +1,6 @@
 {
-  "name": "cdk8s-web-app",
+  "name": "cdk8s-jamstack",
+  "description": "CDK8s construct for deploying a full stack web app.",
   "repository": {
     "type": "git",
     "url": "git@github.com:cdk8s-team/cdk8s-web-app.git"
@@ -31,7 +32,7 @@
   },
   "author": {
     "name": "Ryan Parker",
-    "email": "ryan.parker3@outlook.com",
+    "email": "parkerzr@amazon.com",
     "organization": false
   },
   "devDependencies": {
@@ -39,8 +40,9 @@
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "cdk8s": "1.4.10",
-    "constructs": "3.3.196",
+    "cdk8s": "2.3.21",
+    "cdk8s-plus-24": "2.0.0-rc.14",
+    "constructs": "10.1.33",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -59,15 +61,10 @@
     "typescript": "^4.7.3"
   },
   "peerDependencies": {
-    "cdk8s": "^1.4.10",
-    "constructs": "^3.3.196"
+    "cdk8s": "^2.3.21",
+    "cdk8s-plus-24": "^2.0.0-rc.14",
+    "constructs": "^10.1.33"
   },
-  "dependencies": {
-    "cdk8s-plus-24": "^2.0.0-rc.13"
-  },
-  "bundledDependencies": [
-    "cdk8s-plus-24"
-  ],
   "keywords": [
     "cdk"
   ],

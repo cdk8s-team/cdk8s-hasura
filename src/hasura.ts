@@ -1,8 +1,6 @@
-import { Names } from 'cdk8s';
+import { Duration } from 'cdk8s';
+import * as kplus from 'cdk8s-plus-24';
 import { Construct } from 'constructs';
-import {
-  IntOrString, KubeConfigMap, KubeDeployment, KubeSecret, KubeService,
-} from './imports/k8s';
 
 export interface HasuraProps {
   /**
@@ -36,30 +34,51 @@ export interface HasuraProps {
    * @default 'hasura/graphql-engine:latest'
    */
   readonly image?: string;
+
+  /**
+   * Labels to apply to all Hasura resources.
+   *
+   * @default - { app: "hasura" }
+   */
+  readonly labels?: { [name: string]: string };
+
+  /**
+   * Namespace to apply to all Hasura resources. The Postgres instance must be
+   * created in this namespace so that they may connect.
+   *
+   * @default - undefined (will be assigned to the 'default' namespace)
+   */
+  readonly namespace?: string;
 }
 
-export default class Hasura extends Construct {
-  config: KubeConfigMap;
-  secret: KubeSecret;
-  deployment: KubeDeployment;
-  service: KubeService;
+/**
+ * A Kubernetes Hasura instance.
+ */
+export class Hasura extends Construct {
+  private readonly labels: { [name: string]: string };
+  private readonly namespace?: string;
+  readonly config: kplus.ConfigMap;
+  readonly secret: kplus.Secret;
+  readonly deployment: kplus.Deployment;
+  readonly service: kplus.Service;
 
   constructor(scope: Construct, id: string, props: HasuraProps) {
     super(scope, id);
+    this.labels = props.labels ?? { app: 'hasura' };
+    this.namespace = props.namespace;
 
     const {
       adminSecret,
       databaseUrl,
-      enableConsole=true,
-      logLevel='info',
-      image='hasura/graphql-engine:latest',
+      enableConsole = true,
+      logLevel = 'info',
+      image = 'hasura/graphql-engine:latest',
     } = props;
 
-    const label = { app: Names.toDnsLabel(this) };
-
-    this.config = new KubeConfigMap(this, 'hasura-config', {
+    this.config = new kplus.ConfigMap(this, 'hasura-config', {
       metadata: {
-        labels: label,
+        namespace: this.namespace,
+        labels: this.labels,
       },
       data: {
         HASURA_GRAPHQL_ENABLE_CONSOLE: String(enableConsole),
@@ -67,9 +86,10 @@ export default class Hasura extends Construct {
       },
     });
 
-    this.secret = new KubeSecret(this, 'hasura-secret', {
+    this.secret = new kplus.Secret(this, 'hasura-secret', {
       metadata: {
-        labels: label,
+        namespace: this.namespace,
+        labels: this.labels,
       },
       stringData: {
         HASURA_GRAPHQL_ADMIN_SECRET: adminSecret,
@@ -78,110 +98,47 @@ export default class Hasura extends Construct {
     });
 
 
-    this.deployment = new KubeDeployment(this, 'hasura-deployment', {
+    this.deployment = new kplus.Deployment(this, 'hasura-deployment', {
       metadata: {
-        labels: label,
+        namespace: this.namespace,
+        labels: this.labels,
       },
-      spec: {
-        replicas: 1,
-        selector: {
-          matchLabels: label,
-        },
-        template: {
-          metadata: {
-            labels: label,
-          },
-          spec: {
-            containers: [
-              {
-                name: 'hasura',
-                image: image,
-                imagePullPolicy: 'IfNotPresent',
-                ports: [
-                  {
-                    protocol: 'TCP',
-                    containerPort: 8080,
-                  },
-                ],
-                readinessProbe: {
-                  failureThreshold: 3,
-                  initialDelaySeconds: 5,
-                  periodSeconds: 10,
-                  successThreshold: 1,
-                  timeoutSeconds: 1,
-                  httpGet: {
-                    path: '/health',
-                    port: IntOrString.fromNumber(8080),
-                  },
-                },
-                env: [
-                  {
-                    name: 'HASURA_GRAPHQL_ENABLE_CONSOLE',
-                    valueFrom: {
-                      configMapKeyRef: {
-                        name: this.config.name,
-                        key: 'HASURA_GRAPHQL_ENABLE_CONSOLE',
-                      },
-                    },
-                  },
-                  {
-                    name: 'HASURA_GRAPHQL_LOG_LEVEL',
-                    valueFrom: {
-                      configMapKeyRef: {
-                        name: this.config.name,
-                        key: 'HASURA_GRAPHQL_LOG_LEVEL',
-                      },
-                    },
-                  },
-                  {
-                    name: 'HASURA_GRAPHQL_UNAUTHORIZED_ROLE',
-                    valueFrom: {
-                      configMapKeyRef: {
-                        name: this.config.name,
-                        key: 'HASURA_GRAPHQL_UNAUTHORIZED_ROLE',
-                      },
-                    },
-                  },
-                  {
-                    name: 'HASURA_GRAPHQL_DATABASE_URL',
-                    valueFrom: {
-                      secretKeyRef: {
-                        name: this.secret.name,
-                        key: 'HASURA_GRAPHQL_DATABASE_URL',
-                      },
-                    },
-                  },
-                  {
-                    name: 'HASURA_GRAPHQL_ADMIN_SECRET',
-                    valueFrom: {
-                      secretKeyRef: {
-                        name: this.secret.name,
-                        key: 'HASURA_GRAPHQL_ADMIN_SECRET',
-                      },
-                    },
-                  },
-                ],
-              },
-            ],
+      containers: [
+        {
+          name: 'hasura',
+          image,
+          imagePullPolicy: kplus.ImagePullPolicy.IF_NOT_PRESENT,
+          readiness: kplus.Probe.fromHttpGet('/healthz', {
+            port: 8080,
+            successThreshold: 1,
+            failureThreshold: 3,
+            initialDelaySeconds: Duration.seconds(5),
+            periodSeconds: Duration.seconds(10),
+            timeoutSeconds: Duration.seconds(1),
+          }),
+          envVariables: {
+            HASURA_GRAPHQL_ENABLE_CONSOLE: kplus.EnvValue.fromConfigMap(this.config, 'HASURA_GRAPHQL_ENABLE_CONSOLE'),
+            HASURA_GRAPHQL_LOG_LEVEL: kplus.EnvValue.fromConfigMap(this.config, 'HASURA_GRAPHQL_LOG_LEVEL'),
+            HASURA_GRAPHQL_DATABASE_URL: kplus.EnvValue.fromSecretValue({
+              secret: this.secret,
+              key: 'HASURA_GRAPHQL_DATABASE_URL',
+            }),
+            HASURA_GRAPHQL_ADMIN_SECRET: kplus.EnvValue.fromSecretValue({
+              secret: this.secret,
+              key: 'HASURA_GRAPHQL_ADMIN_SECRET',
+            }),
           },
         },
-      },
+      ],
     });
 
-    this.service = new KubeService(this, 'Hasura-service', {
-      metadata: {
-        labels: label,
-      },
-      spec: {
-        type: 'ClusterIP',
-        selector: label,
-        ports: [
-          {
-            port: 80,
-            targetPort: IntOrString.fromNumber(8080),
-          },
-        ],
-      },
+    this.service = this.deployment.exposeViaService({
+      ports: [
+        {
+          port: 80,
+          targetPort: 8080,
+        },
+      ],
     });
   }
 }
