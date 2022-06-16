@@ -1,6 +1,6 @@
 # cdk8s-jamstack
 
-Deploy a Jamstack application to Kubernetes.
+Deploy a Jamstack application to Kubernetes using CDK8s+.
 
 This Jamstack application consists of:
 
@@ -16,7 +16,7 @@ See [Postgres Operator Quickstart guide](https://postgres-operator.readthedocs.i
 
 ## :rocket: Quick start
 
-**1. Add dependency to you project**
+**1. Add the dependency**
 
 ```ts
 yarn add cdk8s-jamstack
@@ -39,4 +39,3 @@ new Jamstack(this, 'my-jamstack', {
 ## :classical_building: License
 
 This project is licensed under the Apache-2.0 license.
-
