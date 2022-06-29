@@ -19,7 +19,7 @@ See [Postgres Operator Quickstart guide](https://postgres-operator.readthedocs.i
 **1. Add the dependency**
 
 ```ts
-yarn add cdk8s-jamstack
+npm install cdk8s-jamstack
 ```
 
 **2. Initalize the Jamstack construct**

@@ -1,5 +1,5 @@
 import * as cdk8s from 'cdk8s';
-import Jamstack from '../src/index';
+import Jamstack from '../index';
 
 test('generates manifest, when provided the minimal parameters', () => {
   const app = new cdk8s.App();
