@@ -1,5 +1,6 @@
-# cdk8s-jamstack
+# cdk8s-hasura
 
+<<<<<<< Updated upstream
 Deploy a Jamstack application to Kubernetes.
 
 This Jamstack application consists of:
@@ -13,28 +14,35 @@ This Jamstack application consists of:
 You'll need to have the Postgres Operator installed in your Kubernetes cluster.
 
 See [Postgres Operator Quickstart guide](https://postgres-operator.readthedocs.io/en/latest/quickstart/).
+=======
+Deploy a hasura application to Kubernetes using CDK8s+.
+>>>>>>> Stashed changes
 
 ## :rocket: Quick start
 
 **1. Add dependency to you project**
 
 ```ts
+<<<<<<< Updated upstream
 yarn add cdk8s-jamstack
+=======
+npm install cdk8s-hasura
+>>>>>>> Stashed changes
 ```
 
-**2. Initalize the Jamstack construct**
+**2. Initialize the hasura construct**
 
 ```ts
-import Jamstack from 'cdk8s-jamstack';
+import hasura from 'cdk8s-hasura';
 
-new Jamstack(this, 'my-jamstack', {
-  teamId: 'goldfish', // Team that will have access to the postgres-cluster
+new hasura(this, 'graphql-server', {
   adminSecret: 'admin-secret', // Secret used to authenticate the Hasura admin user
-  nextjsImage: '1234567891234.dkr.ecr.us-east-1.amazonaws.com/nextjs-website:latest', // Nextjs image
+  host: 'postgres',
+  database: 'postgres',
+  postgresUsername: kplus.EnvValue.fromValue('postgres'),
+  postgresPassword: kplus.EnvValue.fromValue('postgres'),
 });
 ```
-
-> There is a known bug where Hasura will not be able to connect with the Postgres cluster. This is explained in the [issues doc](./docs/issues.md#cannot-get-value-from-imported-secret) under "Cannot get value from imported secret".
 
 ## :classical_building: License
 

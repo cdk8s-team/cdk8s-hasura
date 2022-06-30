@@ -9,12 +9,24 @@ export interface HasuraProps {
   readonly adminSecret: string;
 
   /**
-   * The database connection URL that you want to use for the Hasura database.
-   *
-   * @example
-   * `postgresql://${USER}:${PASSWORD}@postgres:${PORT}/${DATABASE}`
+   * The host of the Postgres database.
    */
-  readonly databaseUrl: string;
+  readonly host: string;
+
+  /**
+   * The name of the Postgres Database.
+   */
+  readonly database: string;
+
+  /**
+   * Env variable for the Postgres username.
+   */
+  readonly postgresUsername: kplus.EnvValue;
+
+  /**
+   * Env variable for the Postgres password.
+   */
+  readonly postgresPassword: kplus.EnvValue;
 
   /**
    * Enable the web UI for Hasura.
@@ -69,7 +81,10 @@ export class Hasura extends Construct {
 
     const {
       adminSecret,
-      databaseUrl,
+      host,
+      database,
+      postgresUsername,
+      postgresPassword,
       enableConsole = true,
       logLevel = 'info',
       image = 'hasura/graphql-engine:latest',
@@ -93,7 +108,6 @@ export class Hasura extends Construct {
       },
       stringData: {
         HASURA_GRAPHQL_ADMIN_SECRET: adminSecret,
-        HASURA_GRAPHQL_DATABASE_URL: databaseUrl,
       },
     });
 
@@ -117,16 +131,19 @@ export class Hasura extends Construct {
             timeoutSeconds: Duration.seconds(1),
           }),
           envVariables: {
-            HASURA_GRAPHQL_ENABLE_CONSOLE: kplus.EnvValue.fromConfigMap(this.config, 'HASURA_GRAPHQL_ENABLE_CONSOLE'),
-            HASURA_GRAPHQL_LOG_LEVEL: kplus.EnvValue.fromConfigMap(this.config, 'HASURA_GRAPHQL_LOG_LEVEL'),
-            HASURA_GRAPHQL_DATABASE_URL: kplus.EnvValue.fromSecretValue({
-              secret: this.secret,
-              key: 'HASURA_GRAPHQL_DATABASE_URL',
-            }),
+            // Database connection
+            POSTGRES_USERNAME: postgresUsername,
+            POSTGRES_PASSWORD: postgresPassword,
+            POSTGRES_DATABASE: kplus.EnvValue.fromValue(database),
+            POSTGRES_HOST: kplus.EnvValue.fromValue(host),
+            HASURA_GRAPHQL_DATABASE_URL: kplus.EnvValue.fromValue('postgres://$(POSTGRES_USERNAME):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):5432/$(POSTGRES_DATABASE)'),
+            // Config
             HASURA_GRAPHQL_ADMIN_SECRET: kplus.EnvValue.fromSecretValue({
               secret: this.secret,
               key: 'HASURA_GRAPHQL_ADMIN_SECRET',
             }),
+            HASURA_GRAPHQL_ENABLE_CONSOLE: kplus.EnvValue.fromConfigMap(this.config, 'HASURA_GRAPHQL_ENABLE_CONSOLE'),
+            HASURA_GRAPHQL_LOG_LEVEL: kplus.EnvValue.fromConfigMap(this.config, 'HASURA_GRAPHQL_LOG_LEVEL'),
           },
         },
       ],
