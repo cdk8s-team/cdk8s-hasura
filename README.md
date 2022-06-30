@@ -1,6 +1,6 @@
 # cdk8s-hasura
 
-Deploy a hasura application to Kubernetes using CDK8s+.
+Deploy a hasura graphql instance to Kubernetes using CDK8s+.
 
 ## :rocket: Quick start
 
