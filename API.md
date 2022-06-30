@@ -2,39 +2,41 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
-### Postgres <a name="Postgres" id="cdk8s-web-app.Postgres"></a>
+### Hasura <a name="Hasura" id="cdk8s-hasura.Hasura"></a>
 
-#### Initializers <a name="Initializers" id="cdk8s-web-app.Postgres.Initializer"></a>
+A Kubernetes Hasura instance.
+
+#### Initializers <a name="Initializers" id="cdk8s-hasura.Hasura.Initializer"></a>
 
 ```typescript
-import { Postgres } from 'cdk8s-web-app'
+import { Hasura } from 'cdk8s-hasura'
 
-new Postgres(scope: Construct, id: string, props: PostgresProps)
+new Hasura(scope: Construct, id: string, props: HasuraProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk8s-web-app.Postgres.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#cdk8s-web-app.Postgres.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk8s-web-app.Postgres.Initializer.parameter.props">props</a></code> | <code><a href="#cdk8s-web-app.PostgresProps">PostgresProps</a></code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.Initializer.parameter.props">props</a></code> | <code><a href="#cdk8s-hasura.HasuraProps">HasuraProps</a></code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="cdk8s-web-app.Postgres.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="cdk8s-hasura.Hasura.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="cdk8s-web-app.Postgres.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="cdk8s-hasura.Hasura.Initializer.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="cdk8s-web-app.Postgres.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="cdk8s-hasura.Hasura.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#cdk8s-web-app.PostgresProps">PostgresProps</a>
+- *Type:* <a href="#cdk8s-hasura.HasuraProps">HasuraProps</a>
 
 ---
 
@@ -42,12 +44,11 @@ new Postgres(scope: Construct, id: string, props: PostgresProps)
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk8s-web-app.Postgres.toString">toString</a></code> | Returns a string representation of this construct. |
-| <code><a href="#cdk8s-web-app.Postgres.userCredentials">userCredentials</a></code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.toString">toString</a></code> | Returns a string representation of this construct. |
 
 ---
 
-##### `toString` <a name="toString" id="cdk8s-web-app.Postgres.toString"></a>
+##### `toString` <a name="toString" id="cdk8s-hasura.Hasura.toString"></a>
 
 ```typescript
 public toString(): string
@@ -55,32 +56,20 @@ public toString(): string
 
 Returns a string representation of this construct.
 
-##### `userCredentials` <a name="userCredentials" id="cdk8s-web-app.Postgres.userCredentials"></a>
-
-```typescript
-public userCredentials(username?: string): ISecret
-```
-
-###### `username`<sup>Optional</sup> <a name="username" id="cdk8s-web-app.Postgres.userCredentials.parameter.username"></a>
-
-- *Type:* string
-
----
-
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk8s-web-app.Postgres.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdk8s-hasura.Hasura.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 
 ---
 
-##### `isConstruct` <a name="isConstruct" id="cdk8s-web-app.Postgres.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk8s-hasura.Hasura.isConstruct"></a>
 
 ```typescript
-import { Postgres } from 'cdk8s-web-app'
+import { Hasura } from 'cdk8s-hasura'
 
-Postgres.isConstruct(x: any)
+Hasura.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
@@ -99,7 +88,7 @@ library can be accidentally installed, and `instanceof` will behave
 unpredictably. It is safest to avoid using `instanceof`, and using
 this type-testing method instead.
 
-###### `x`<sup>Required</sup> <a name="x" id="cdk8s-web-app.Postgres.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s-hasura.Hasura.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -111,11 +100,15 @@ Any object.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk8s-web-app.Postgres.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s-hasura.Hasura.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s-hasura.Hasura.property.config">config</a></code> | <code>cdk8s-plus-24.ConfigMap</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.deployment">deployment</a></code> | <code>cdk8s-plus-24.Deployment</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.secret">secret</a></code> | <code>cdk8s-plus-24.Secret</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.service">service</a></code> | <code>cdk8s-plus-24.Service</code> | *No description.* |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="cdk8s-web-app.Postgres.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s-hasura.Hasura.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -127,15 +120,55 @@ The tree node.
 
 ---
 
+##### `config`<sup>Required</sup> <a name="config" id="cdk8s-hasura.Hasura.property.config"></a>
+
+```typescript
+public readonly config: ConfigMap;
+```
+
+- *Type:* cdk8s-plus-24.ConfigMap
+
+---
+
+##### `deployment`<sup>Required</sup> <a name="deployment" id="cdk8s-hasura.Hasura.property.deployment"></a>
+
+```typescript
+public readonly deployment: Deployment;
+```
+
+- *Type:* cdk8s-plus-24.Deployment
+
+---
+
+##### `secret`<sup>Required</sup> <a name="secret" id="cdk8s-hasura.Hasura.property.secret"></a>
+
+```typescript
+public readonly secret: Secret;
+```
+
+- *Type:* cdk8s-plus-24.Secret
+
+---
+
+##### `service`<sup>Required</sup> <a name="service" id="cdk8s-hasura.Hasura.property.service"></a>
+
+```typescript
+public readonly service: Service;
+```
+
+- *Type:* cdk8s-plus-24.Service
+
+---
+
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### HasuraProps <a name="HasuraProps" id="cdk8s-web-app.HasuraProps"></a>
+### HasuraProps <a name="HasuraProps" id="cdk8s-hasura.HasuraProps"></a>
 
-#### Initializer <a name="Initializer" id="cdk8s-web-app.HasuraProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s-hasura.HasuraProps.Initializer"></a>
 
 ```typescript
-import { HasuraProps } from 'cdk8s-web-app'
+import { HasuraProps } from 'cdk8s-hasura'
 
 const hasuraProps: HasuraProps = { ... }
 ```
@@ -144,15 +177,20 @@ const hasuraProps: HasuraProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk8s-web-app.HasuraProps.property.adminSecret">adminSecret</a></code> | <code>string</code> | Secret passphrase used to authenticate the admin user with the Hasura instance. |
-| <code><a href="#cdk8s-web-app.HasuraProps.property.databaseUrl">databaseUrl</a></code> | <code>string</code> | The database connection URL that you want to use for the Hasura database. |
-| <code><a href="#cdk8s-web-app.HasuraProps.property.enableConsole">enableConsole</a></code> | <code>boolean</code> | Enable the web UI for Hasura. |
-| <code><a href="#cdk8s-web-app.HasuraProps.property.image">image</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk8s-web-app.HasuraProps.property.logLevel">logLevel</a></code> | <code>string</code> | Log level for Hasura. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.adminSecret">adminSecret</a></code> | <code>string</code> | Secret passphrase used to authenticate the admin user with the Hasura instance. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.database">database</a></code> | <code>string</code> | The name of the Postgres Database. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.host">host</a></code> | <code>string</code> | The host of the Postgres database. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.postgresPassword">postgresPassword</a></code> | <code>cdk8s-plus-24.EnvValue</code> | Env variable for the Postgres password. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.postgresUsername">postgresUsername</a></code> | <code>cdk8s-plus-24.EnvValue</code> | Env variable for the Postgres username. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.enableConsole">enableConsole</a></code> | <code>boolean</code> | Enable the web UI for Hasura. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.image">image</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.labels">labels</a></code> | <code>{[ key: string ]: string}</code> | Labels to apply to all Hasura resources. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.logLevel">logLevel</a></code> | <code>string</code> | Log level for Hasura. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.namespace">namespace</a></code> | <code>string</code> | Namespace to apply to all Hasura resources. |
 
 ---
 
-##### `adminSecret`<sup>Required</sup> <a name="adminSecret" id="cdk8s-web-app.HasuraProps.property.adminSecret"></a>
+##### `adminSecret`<sup>Required</sup> <a name="adminSecret" id="cdk8s-hasura.HasuraProps.property.adminSecret"></a>
 
 ```typescript
 public readonly adminSecret: string;
@@ -164,26 +202,55 @@ Secret passphrase used to authenticate the admin user with the Hasura instance.
 
 ---
 
-##### `databaseUrl`<sup>Required</sup> <a name="databaseUrl" id="cdk8s-web-app.HasuraProps.property.databaseUrl"></a>
+##### `database`<sup>Required</sup> <a name="database" id="cdk8s-hasura.HasuraProps.property.database"></a>
 
 ```typescript
-public readonly databaseUrl: string;
+public readonly database: string;
 ```
 
 - *Type:* string
 
-The database connection URL that you want to use for the Hasura database.
+The name of the Postgres Database.
 
 ---
 
-*Example*
+##### `host`<sup>Required</sup> <a name="host" id="cdk8s-hasura.HasuraProps.property.host"></a>
 
 ```typescript
-`postgresql://${USER}:${PASSWORD}@postgres:${PORT}/${DATABASE}`
+public readonly host: string;
 ```
 
+- *Type:* string
 
-##### `enableConsole`<sup>Optional</sup> <a name="enableConsole" id="cdk8s-web-app.HasuraProps.property.enableConsole"></a>
+The host of the Postgres database.
+
+---
+
+##### `postgresPassword`<sup>Required</sup> <a name="postgresPassword" id="cdk8s-hasura.HasuraProps.property.postgresPassword"></a>
+
+```typescript
+public readonly postgresPassword: EnvValue;
+```
+
+- *Type:* cdk8s-plus-24.EnvValue
+
+Env variable for the Postgres password.
+
+---
+
+##### `postgresUsername`<sup>Required</sup> <a name="postgresUsername" id="cdk8s-hasura.HasuraProps.property.postgresUsername"></a>
+
+```typescript
+public readonly postgresUsername: EnvValue;
+```
+
+- *Type:* cdk8s-plus-24.EnvValue
+
+Env variable for the Postgres username.
+
+---
+
+##### `enableConsole`<sup>Optional</sup> <a name="enableConsole" id="cdk8s-hasura.HasuraProps.property.enableConsole"></a>
 
 ```typescript
 public readonly enableConsole: boolean;
@@ -196,7 +263,7 @@ Enable the web UI for Hasura.
 
 ---
 
-##### `image`<sup>Optional</sup> <a name="image" id="cdk8s-web-app.HasuraProps.property.image"></a>
+##### `image`<sup>Optional</sup> <a name="image" id="cdk8s-hasura.HasuraProps.property.image"></a>
 
 ```typescript
 public readonly image: string;
@@ -207,7 +274,20 @@ public readonly image: string;
 
 ---
 
-##### `logLevel`<sup>Optional</sup> <a name="logLevel" id="cdk8s-web-app.HasuraProps.property.logLevel"></a>
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s-hasura.HasuraProps.property.labels"></a>
+
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* { app: "hasura" }
+
+Labels to apply to all Hasura resources.
+
+---
+
+##### `logLevel`<sup>Optional</sup> <a name="logLevel" id="cdk8s-hasura.HasuraProps.property.logLevel"></a>
 
 ```typescript
 public readonly logLevel: string;
@@ -222,75 +302,7 @@ Possible values are: "debug", "info", "warn", "error".
 
 ---
 
-### PostgresProps <a name="PostgresProps" id="cdk8s-web-app.PostgresProps"></a>
-
-#### Initializer <a name="Initializer" id="cdk8s-web-app.PostgresProps.Initializer"></a>
-
-```typescript
-import { PostgresProps } from 'cdk8s-web-app'
-
-const postgresProps: PostgresProps = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.teamId">teamId</a></code> | <code>string</code> | Name of the team that the cluster belongs to. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.databases">databases</a></code> | <code>{[ key: string ]: string}</code> | A map of database names to database owners. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.labels">labels</a></code> | <code>{[ key: string ]: string}</code> | Labels to apply to all Postgres resources. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.namespace">namespace</a></code> | <code>string</code> | Namespace to apply to all Postgresql resources. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.numberOfInstances">numberOfInstances</a></code> | <code>number</code> | The number of Postgres instances to create. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.users">users</a></code> | <code>{[ key: string ]: <a href="#cdk8s-web-app.UserFlags">UserFlags</a>[]}</code> | A map of usernames to user flags. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.version">version</a></code> | <code><a href="#cdk8s-web-app.PostgresVersion">PostgresVersion</a></code> | Postgres Version Defaults to latest version. |
-| <code><a href="#cdk8s-web-app.PostgresProps.property.volumeSize">volumeSize</a></code> | <code>string</code> | The size of the target volume. |
-
----
-
-##### `teamId`<sup>Required</sup> <a name="teamId" id="cdk8s-web-app.PostgresProps.property.teamId"></a>
-
-```typescript
-public readonly teamId: string;
-```
-
-- *Type:* string
-
-Name of the team that the cluster belongs to.
-
-You cannot change this after the
-cluster is created. Clusters will be prefixed with this team id.
-
-The name will be lower cased.
-
----
-
-##### `databases`<sup>Optional</sup> <a name="databases" id="cdk8s-web-app.PostgresProps.property.databases"></a>
-
-```typescript
-public readonly databases: {[ key: string ]: string};
-```
-
-- *Type:* {[ key: string ]: string}
-- *Default:* if not provided the default database will be created with the name "postgres" and if no users are provided it will be assigned to the default user "dbadmin", if users are provided it will default to the first entry.
-
-A map of database names to database owners.
-
----
-
-##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s-web-app.PostgresProps.property.labels"></a>
-
-```typescript
-public readonly labels: {[ key: string ]: string};
-```
-
-- *Type:* {[ key: string ]: string}
-- *Default:* { app: "postgres" }
-
-Labels to apply to all Postgres resources.
-
----
-
-##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s-web-app.PostgresProps.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s-hasura.HasuraProps.property.namespace"></a>
 
 ```typescript
 public readonly namespace: string;
@@ -299,229 +311,12 @@ public readonly namespace: string;
 - *Type:* string
 - *Default:* undefined (will be assigned to the 'default' namespace)
 
-Namespace to apply to all Postgresql resources.
+Namespace to apply to all Hasura resources.
 
-The Postgres Operator must be
-installed in this namespace for resources to be recognized.
-
----
-
-##### `numberOfInstances`<sup>Optional</sup> <a name="numberOfInstances" id="cdk8s-web-app.PostgresProps.property.numberOfInstances"></a>
-
-```typescript
-public readonly numberOfInstances: number;
-```
-
-- *Type:* number
-- *Default:* 1
-
-The number of Postgres instances to create.
-
----
-
-##### `users`<sup>Optional</sup> <a name="users" id="cdk8s-web-app.PostgresProps.property.users"></a>
-
-```typescript
-public readonly users: {[ key: string ]: UserFlags[]};
-```
-
-- *Type:* {[ key: string ]: <a href="#cdk8s-web-app.UserFlags">UserFlags</a>[]}
-- *Default:* A "dbadmin" user will be created for you with the SUPERUSER and CREATEDB flags.
-
-A map of usernames to user flags.
-
----
-
-##### `version`<sup>Optional</sup> <a name="version" id="cdk8s-web-app.PostgresProps.property.version"></a>
-
-```typescript
-public readonly version: PostgresVersion;
-```
-
-- *Type:* <a href="#cdk8s-web-app.PostgresVersion">PostgresVersion</a>
-- *Default:* PostgresVersion.VALUE_14
-
-Postgres Version Defaults to latest version.
-
----
-
-##### `volumeSize`<sup>Optional</sup> <a name="volumeSize" id="cdk8s-web-app.PostgresProps.property.volumeSize"></a>
-
-```typescript
-public readonly volumeSize: string;
-```
-
-- *Type:* string
-- *Default:* 1Gi
-
-The size of the target volume.
-
-Can be in Gi or Mi units.
+The Postgres instance must be
+created in this namespace so that they may connect.
 
 ---
 
 
-
-## Enums <a name="Enums" id="Enums"></a>
-
-### PostgresVersion <a name="PostgresVersion" id="cdk8s-web-app.PostgresVersion"></a>
-
-Supported PostgreSQL versions.
-
-#### Members <a name="Members" id="Members"></a>
-
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_9_5">VALUE_9_5</a></code> | 9.5. |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_9_6">VALUE_9_6</a></code> | 9.6. |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_10">VALUE_10</a></code> | 10. |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_11">VALUE_11</a></code> | 11. |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_12">VALUE_12</a></code> | 12. |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_13">VALUE_13</a></code> | 13. |
-| <code><a href="#cdk8s-web-app.PostgresVersion.VALUE_14">VALUE_14</a></code> | 14. |
-
----
-
-##### `VALUE_9_5` <a name="VALUE_9_5" id="cdk8s-web-app.PostgresVersion.VALUE_9_5"></a>
-
-9.5.
-
----
-
-
-##### `VALUE_9_6` <a name="VALUE_9_6" id="cdk8s-web-app.PostgresVersion.VALUE_9_6"></a>
-
-9.6.
-
----
-
-
-##### `VALUE_10` <a name="VALUE_10" id="cdk8s-web-app.PostgresVersion.VALUE_10"></a>
-
-10.
-
----
-
-
-##### `VALUE_11` <a name="VALUE_11" id="cdk8s-web-app.PostgresVersion.VALUE_11"></a>
-
-11.
-
----
-
-
-##### `VALUE_12` <a name="VALUE_12" id="cdk8s-web-app.PostgresVersion.VALUE_12"></a>
-
-12.
-
----
-
-
-##### `VALUE_13` <a name="VALUE_13" id="cdk8s-web-app.PostgresVersion.VALUE_13"></a>
-
-13.
-
----
-
-
-##### `VALUE_14` <a name="VALUE_14" id="cdk8s-web-app.PostgresVersion.VALUE_14"></a>
-
-14.
-
----
-
-
-### UserFlags <a name="UserFlags" id="cdk8s-web-app.UserFlags"></a>
-
-User flags that are assigned to users to grant them privileges.
-
-#### Members <a name="Members" id="Members"></a>
-
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#cdk8s-web-app.UserFlags.BYPASSRLS">BYPASSRLS</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOBYPASSRLS">NOBYPASSRLS</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.CREATEDB">CREATEDB</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOCREATEDB">NOCREATEDB</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.CREATEROLE">CREATEROLE</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOCREATEROLE">NOCREATEROLE</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.INHERIT">INHERIT</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOINHERIT">NOINHERIT</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.LOGIN">LOGIN</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOLOGIN">NOLOGIN</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.REPLICATION">REPLICATION</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOREPLICATION">NOREPLICATION</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.SUPERUSER">SUPERUSER</a></code> | *No description.* |
-| <code><a href="#cdk8s-web-app.UserFlags.NOSUPERUSER">NOSUPERUSER</a></code> | *No description.* |
-
----
-
-##### `BYPASSRLS` <a name="BYPASSRLS" id="cdk8s-web-app.UserFlags.BYPASSRLS"></a>
-
----
-
-
-##### `NOBYPASSRLS` <a name="NOBYPASSRLS" id="cdk8s-web-app.UserFlags.NOBYPASSRLS"></a>
-
----
-
-
-##### `CREATEDB` <a name="CREATEDB" id="cdk8s-web-app.UserFlags.CREATEDB"></a>
-
----
-
-
-##### `NOCREATEDB` <a name="NOCREATEDB" id="cdk8s-web-app.UserFlags.NOCREATEDB"></a>
-
----
-
-
-##### `CREATEROLE` <a name="CREATEROLE" id="cdk8s-web-app.UserFlags.CREATEROLE"></a>
-
----
-
-
-##### `NOCREATEROLE` <a name="NOCREATEROLE" id="cdk8s-web-app.UserFlags.NOCREATEROLE"></a>
-
----
-
-
-##### `INHERIT` <a name="INHERIT" id="cdk8s-web-app.UserFlags.INHERIT"></a>
-
----
-
-
-##### `NOINHERIT` <a name="NOINHERIT" id="cdk8s-web-app.UserFlags.NOINHERIT"></a>
-
----
-
-
-##### `LOGIN` <a name="LOGIN" id="cdk8s-web-app.UserFlags.LOGIN"></a>
-
----
-
-
-##### `NOLOGIN` <a name="NOLOGIN" id="cdk8s-web-app.UserFlags.NOLOGIN"></a>
-
----
-
-
-##### `REPLICATION` <a name="REPLICATION" id="cdk8s-web-app.UserFlags.REPLICATION"></a>
-
----
-
-
-##### `NOREPLICATION` <a name="NOREPLICATION" id="cdk8s-web-app.UserFlags.NOREPLICATION"></a>
-
----
-
-
-##### `SUPERUSER` <a name="SUPERUSER" id="cdk8s-web-app.UserFlags.SUPERUSER"></a>
-
----
-
-
-##### `NOSUPERUSER` <a name="NOSUPERUSER" id="cdk8s-web-app.UserFlags.NOSUPERUSER"></a>
-
----
 
