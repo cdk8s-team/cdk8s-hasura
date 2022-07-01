@@ -1,16 +1,16 @@
 # cdk8s-hasura
 
-Deploy a hasura application to Kubernetes using CDK8s+.
+Deploy a Hasura graphql instance to Kubernetes using CDK8s+.
 
 ## :rocket: Quick start
 
-**1. Add dependency to you project**
+**1. Add the dependency**
 
 ```ts
 npm install cdk8s-hasura
 ```
 
-**2. Initialize the hasura construct**
+**2. Initialize the Hasura construct**
 
 ```ts
 import hasura from 'cdk8s-hasura';
