@@ -2,6 +2,7 @@ const { Cdk8sTeamJsiiProject } = require('@cdk8s/projen-common');
 
 const project = new Cdk8sTeamJsiiProject({
   defaultReleaseBranch: 'main',
+  release: false,
   name: 'cdk8s-hasura',
   peerDeps: [
     'cdk8s-plus-24',

@@ -13,9 +13,9 @@ npm install cdk8s-hasura
 **2. Initialize the Hasura construct**
 
 ```ts
-import hasura from 'cdk8s-hasura';
+import { Hasura } from 'cdk8s-hasura';
 
-new hasura(this, 'graphql-server', {
+new Hasura(this, 'graphql-server', {
   adminSecret: 'admin-secret', // Secret used to authenticate the Hasura admin user
   host: 'postgres',
   database: 'postgres',
@@ -23,7 +23,3 @@ new hasura(this, 'graphql-server', {
   postgresPassword: kplus.EnvValue.fromValue('postgres'),
 });
 ```
-
-## :classical_building: License
-
-This project is licensed under the Apache-2.0 license.
