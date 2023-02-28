@@ -119,6 +119,7 @@ export class Hasura extends Construct {
       },
       containers: [
         {
+          portNumber: 8080,
           name: 'hasura',
           image,
           imagePullPolicy: kplus.ImagePullPolicy.IF_NOT_PRESENT,
