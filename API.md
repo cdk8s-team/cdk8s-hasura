@@ -1,3 +1,8 @@
+# cdk8s-hasura
+
+Deploy a Hasura graphql instance to Kubernetes using CDK8s+.
+
+> Under development. Not yet published.
 # API Reference <a name="API Reference" id="api-reference"></a>
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
