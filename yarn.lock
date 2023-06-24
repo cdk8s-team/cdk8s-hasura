@@ -292,10 +292,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.383":
-  version "0.0.383"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.383.tgz#0b3de7b690f2814e7c773f23fa2777524f335b04"
-  integrity sha512-I6xtGfxyX/tqAdmmCtjbU//1YAoB3ytqGEeVhF5KXKfbgQeijgC3GZ4PCUIo6VBTgJbIU5ipiczvzk6LUzZwuA==
+"@cdk8s/projen-common@^0.0.384":
+  version "0.0.384"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.384.tgz#79e36cdd171aff3b8bd068416795abf288bcc27d"
+  integrity sha512-x2S9YcVVGAgth+XpwBAr1HI9/VHdJFg6OAUH+E9XCfcM/d93fkT+uXX6qi2syvcaW7d39eGeYPmu2+NHE+4KPw==
   dependencies:
     codemaker "^1.84.0"
 
@@ -4948,10 +4948,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.71.106:
-  version "0.71.106"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.106.tgz#3e10ccd76482f3de02209027075786d4ab51e76f"
-  integrity sha512-aLIgWn4J2Zw76qQa1MINs8hc6QU+xkAZEc0Coeo52tr0Z87ZzP3HpNMJ6Z+E68Cccz9JsMvhhTAMIrHm7ENTPw==
+projen@^0.71.108:
+  version "0.71.108"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.108.tgz#e842bc06235ed0c0f0c09659fcd2bf5d9a15eba0"
+  integrity sha512-1GS9XrN5aIJq4E3jxVzymHizPyAqkAiOiMzzTZ+b3cUKmfQn8xKRTM2JSVlmkcBteXMo4BmdqGWqkQihm1e5lA==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
@@ -4961,7 +4961,7 @@ projen@^0.71.106:
     fast-json-patch "^3.1.1"
     glob "^8"
     ini "^2.0.0"
-    semver "^7.5.2"
+    semver "^7.5.3"
     shx "^0.3.4"
     xmlbuilder2 "^3.1.1"
     yaml "^2.2.2"
@@ -5294,7 +5294,7 @@ semver-utils@^1.1.4:
   resolved "https://registry.yarnpkg.com/semver-utils/-/semver-utils-1.1.4.tgz#cf0405e669a57488913909fc1c3f29bf2a4871e2"
   integrity sha512-EjnoLE5OGmDAVV/8YDoN5KiajNadjzIp9BAHOhYeQHt7j0UWxjmgsx4YD48wp4Ue1Qogq38F1GNUJNqF1kKKxA==
 
-semver@7.x, semver@^7.0.0, semver@^7.1.1, semver@^7.3.2, semver@^7.3.5, semver@^7.3.7, semver@^7.4.0, semver@^7.5.0, semver@^7.5.1, semver@^7.5.2:
+semver@7.x, semver@^7.0.0, semver@^7.1.1, semver@^7.3.2, semver@^7.3.5, semver@^7.3.7, semver@^7.4.0, semver@^7.5.0, semver@^7.5.1, semver@^7.5.3:
   version "7.5.3"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.3.tgz#161ce8c2c6b4b3bdca6caadc9fa3317a4c4fe88e"
   integrity sha512-QBlUtyVk/5EeHbi7X0fw6liDZc7BBmEaSYn01fMU1OUYbf6GPsbTtd8WmnqbI20SeycoHSeiybkE/q1Q+qlThQ==
