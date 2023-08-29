@@ -244,7 +244,7 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
         },
         {
           "exec": "yarn install --check-files"
@@ -271,7 +271,7 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=projen,@cdk8s/projen-common"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=projen,@cdk8s/projen-common"
         },
         {
           "exec": "yarn install --check-files"
@@ -298,7 +298,7 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,cdk8s,cdk8s-plus-24,constructs,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,npm-check-updates,ts-jest"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,cdk8s,cdk8s-plus-24,constructs,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,npm-check-updates,ts-jest"
         },
         {
           "exec": "yarn install --check-files"
@@ -325,7 +325,7 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=cdk8s,cdk8s-plus-24,constructs"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=peer,prod,optional --filter=cdk8s,cdk8s-plus-24,constructs"
         },
         {
           "exec": "yarn install --check-files"
