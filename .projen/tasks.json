@@ -325,13 +325,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=peer,prod,optional --filter=cdk8s,cdk8s-plus-24,constructs"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=peer,prod,optional --filter=cdk8s,cdk8s-plus-27,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade cdk8s cdk8s-plus-24 constructs"
+          "exec": "yarn upgrade cdk8s cdk8s-plus-27 constructs"
         },
         {
           "exec": "npx projen"
