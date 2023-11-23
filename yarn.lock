@@ -1745,9 +1745,9 @@ cdk8s-plus-27@2.7.61:
     backport "8.5.0"
 
 cdk8s@^2.68.4:
-  version "2.68.4"
-  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-2.68.4.tgz#13e64f88a5f073785558f8f70e29c36c78737dfc"
-  integrity sha512-pkTtmwi3/hPWey6XtSbvPvQcdWfX6H+g1I/HPx5X5eyW22yGEZzYfSuv4HBHBLxOsp6949OlidLZn6EDo7D+UA==
+  version "2.68.10"
+  resolved "https://registry.yarnpkg.com/cdk8s/-/cdk8s-2.68.10.tgz#693aa5a9b39e285a26b39f8b1e0a19d7306aafe1"
+  integrity sha512-y0ZwGvWln5y0hc/8NmB/GBjy4AIbvXhztfnncLhhPz9FWy1B6VjEi3LRLT3OrPwtONWKOmWe6d5KwideevBsrw==
   dependencies:
     fast-json-patch "^3.1.1"
     follow-redirects "^1.15.2"
@@ -4342,9 +4342,9 @@ lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
 
 "lru-cache@^9.1.1 || ^10.0.0":
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.3.tgz#b40014d7d2d16d94130b87297a04a1f24874ae7c"
-  integrity sha512-B7gr+F6MkqB3uzINHXNctGieGsRTMwIBgxkp0yq/5BwcuDzD4A8wQpHQW6vDAm1uKSLQghmRdD9sKqf2vJ1cEg==
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.1.0.tgz#2098d41c2dc56500e6c88584aa656c84de7d0484"
+  integrity sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==
 
 make-dir@^3.1.0:
   version "3.1.0"
