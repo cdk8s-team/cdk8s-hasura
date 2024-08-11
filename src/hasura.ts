@@ -1,5 +1,5 @@
 import { Duration } from 'cdk8s';
-import * as kplus from 'cdk8s-plus-27';
+import * as kplus from 'cdk8s-plus-28';
 import { Construct } from 'constructs';
 
 export interface HasuraProps {
