@@ -5,7 +5,7 @@ const project = new Cdk8sTeamJsiiProject({
   release: false,
   name: 'cdk8s-hasura',
   peerDeps: [
-    'cdk8s-plus-27',
+    'cdk8s-plus-28',
     'cdk8s',
     'constructs',
   ],

@@ -106,10 +106,10 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdk8s-hasura.Hasura.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#cdk8s-hasura.Hasura.property.config">config</a></code> | <code>cdk8s-plus-27.ConfigMap</code> | *No description.* |
-| <code><a href="#cdk8s-hasura.Hasura.property.deployment">deployment</a></code> | <code>cdk8s-plus-27.Deployment</code> | *No description.* |
-| <code><a href="#cdk8s-hasura.Hasura.property.secret">secret</a></code> | <code>cdk8s-plus-27.Secret</code> | *No description.* |
-| <code><a href="#cdk8s-hasura.Hasura.property.service">service</a></code> | <code>cdk8s-plus-27.Service</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.config">config</a></code> | <code>cdk8s-plus-28.ConfigMap</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.deployment">deployment</a></code> | <code>cdk8s-plus-28.Deployment</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.secret">secret</a></code> | <code>cdk8s-plus-28.Secret</code> | *No description.* |
+| <code><a href="#cdk8s-hasura.Hasura.property.service">service</a></code> | <code>cdk8s-plus-28.Service</code> | *No description.* |
 
 ---
 
@@ -131,7 +131,7 @@ The tree node.
 public readonly config: ConfigMap;
 ```
 
-- *Type:* cdk8s-plus-27.ConfigMap
+- *Type:* cdk8s-plus-28.ConfigMap
 
 ---
 
@@ -141,7 +141,7 @@ public readonly config: ConfigMap;
 public readonly deployment: Deployment;
 ```
 
-- *Type:* cdk8s-plus-27.Deployment
+- *Type:* cdk8s-plus-28.Deployment
 
 ---
 
@@ -151,7 +151,7 @@ public readonly deployment: Deployment;
 public readonly secret: Secret;
 ```
 
-- *Type:* cdk8s-plus-27.Secret
+- *Type:* cdk8s-plus-28.Secret
 
 ---
 
@@ -161,7 +161,7 @@ public readonly secret: Secret;
 public readonly service: Service;
 ```
 
-- *Type:* cdk8s-plus-27.Service
+- *Type:* cdk8s-plus-28.Service
 
 ---
 
@@ -185,8 +185,8 @@ const hasuraProps: HasuraProps = { ... }
 | <code><a href="#cdk8s-hasura.HasuraProps.property.adminSecret">adminSecret</a></code> | <code>string</code> | Secret passphrase used to authenticate the admin user with the Hasura instance. |
 | <code><a href="#cdk8s-hasura.HasuraProps.property.database">database</a></code> | <code>string</code> | The name of the Postgres Database. |
 | <code><a href="#cdk8s-hasura.HasuraProps.property.host">host</a></code> | <code>string</code> | The host of the Postgres database. |
-| <code><a href="#cdk8s-hasura.HasuraProps.property.postgresPassword">postgresPassword</a></code> | <code>cdk8s-plus-27.EnvValue</code> | Env variable for the Postgres password. |
-| <code><a href="#cdk8s-hasura.HasuraProps.property.postgresUsername">postgresUsername</a></code> | <code>cdk8s-plus-27.EnvValue</code> | Env variable for the Postgres username. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.postgresPassword">postgresPassword</a></code> | <code>cdk8s-plus-28.EnvValue</code> | Env variable for the Postgres password. |
+| <code><a href="#cdk8s-hasura.HasuraProps.property.postgresUsername">postgresUsername</a></code> | <code>cdk8s-plus-28.EnvValue</code> | Env variable for the Postgres username. |
 | <code><a href="#cdk8s-hasura.HasuraProps.property.enableConsole">enableConsole</a></code> | <code>boolean</code> | Enable the web UI for Hasura. |
 | <code><a href="#cdk8s-hasura.HasuraProps.property.image">image</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdk8s-hasura.HasuraProps.property.labels">labels</a></code> | <code>{[ key: string ]: string}</code> | Labels to apply to all Hasura resources. |
@@ -237,7 +237,7 @@ The host of the Postgres database.
 public readonly postgresPassword: EnvValue;
 ```
 
-- *Type:* cdk8s-plus-27.EnvValue
+- *Type:* cdk8s-plus-28.EnvValue
 
 Env variable for the Postgres password.
 
@@ -249,7 +249,7 @@ Env variable for the Postgres password.
 public readonly postgresUsername: EnvValue;
 ```
 
-- *Type:* cdk8s-plus-27.EnvValue
+- *Type:* cdk8s-plus-28.EnvValue
 
 Env variable for the Postgres username.
 
