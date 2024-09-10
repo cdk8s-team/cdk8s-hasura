@@ -1,5 +1,5 @@
 import * as cdk8s from 'cdk8s';
-import * as kplus from 'cdk8s-plus-24';
+import * as kplus from 'cdk8s-plus-28';
 import { Hasura } from '../src/index';
 
 test('generates manifest, when provided the minimal parameters', () => {
