@@ -111,7 +111,6 @@ export class Hasura extends Construct {
       },
     });
 
-
     this.deployment = new kplus.Deployment(this, 'hasura-deployment', {
       metadata: {
         namespace: this.namespace,
